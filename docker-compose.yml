@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+    php-apache-environment:
+        container_name: php-apache
+        build:
+            dockerfile: Dockerfile
+        depends_on:
+            - db
+        volumes:
+            - ./src:/var/www/html/
+        ports:
+            - 8100:80
+    db:
+        container_name: db
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: sumitomo
+            MYSQL_DATABASE: pblsumi
+            MYSQL_USER: sumitomo
+            MYSQL_PASSWORD : sumitomo
+        ports:
+            - "9906:3306"
